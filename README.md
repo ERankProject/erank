@@ -1,2 +1,2 @@
-# valam-web-app
-Valam backend services and web application
+# erank
+E-Rank backend services and web application
