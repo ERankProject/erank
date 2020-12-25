@@ -9,6 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.*;
 
 @Data
@@ -16,12 +20,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name ="user", uniqueConstraints = {
-		@UniqueConstraint(columnNames ="email")
+		@UniqueConstraint(columnNames ="userid")
 })
-public class User {
+public class User implements Serializable{
  
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name = "userId")
+	@Column(name = "userid")
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Long id;
 	
@@ -34,8 +43,8 @@ public class User {
 	
 	private String imageUrl;
 	
-	@Column(nullable = false)
-	private Boolean emailVerified = false; 
+	@Column(nullable = true)
+	private Boolean emailVerified = true; 
 	
 	@Column(name = "phNum")
 	private @NonNull String phNum;
@@ -47,5 +56,13 @@ public class User {
 	private AuthProvider provider;
 	
 	private @NonNull String providerId;
+	
+	@JsonIgnore
+	@OneToMany(targetEntity=UserSurvey.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+	private Set<UserSurvey> userSurvey = new HashSet<UserSurvey>(0);
+    
+//	@JsonIgnore
+// 	@OneToMany(targetEntity=UserSurvey.class,fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+//	private UserSurvey userSurvey;
 	
 }

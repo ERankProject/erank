@@ -45,11 +45,15 @@
 		<!-- <scope>provided</scope> -->
 	</dependency>
 		<!--  Twilio SDK -->
-		<dependency>
-              <groupId>com.twilio.sdk</groupId>
-              <artifactId>twilio</artifactId>
-              <version>7.34.0</version>
-        </dependency>
+<dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+   </dependency>
+   		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 		<!-- OAuth2 Client -->
         <dependency>
 			<groupId>org.springframework.security</groupId>
@@ -99,11 +103,6 @@
               <groupId>javax.validation</groupId>
               <artifactId>validation-api</artifactId>
               </dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
 	</dependencies>
 
 	<build>

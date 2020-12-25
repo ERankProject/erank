@@ -1,11 +1,13 @@
 package com.erank.security;
 
-import com.erank.config.AppProperties;
+
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+
+import com.erank.config.AppProperties;
 
 import java.util.Date;
 
