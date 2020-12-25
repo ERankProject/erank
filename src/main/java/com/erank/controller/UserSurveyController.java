@@ -48,6 +48,5 @@ public class UserSurveyController {
 	@PostMapping("/add")
 	public UserSurvey updateSurvey(@RequestBody UserSurveyDto surveyDto) {
 		return surveyService.saveSurvey(surveyDto); 
-	
 	}
 }
