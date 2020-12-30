@@ -1,5 +1,6 @@
 package com.erank.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +31,33 @@ public class UserSurveyService {
 //		return userSurveyRepo.save(userSurvey);
 //	}
 //	
-//	public List<UserSurvey> saveUsers(List<UserSurvey> userSurveys){
-//		return userSurveyRepo.saveAll(userSurveys);
-//	}
+	public List<UserSurvey> saveUsers(List<UserSurveyDto> userSurveys){
+			
+		List<UserSurvey> userSurveyList = new ArrayList<UserSurvey>();
+		User user = null;
+		for(UserSurveyDto userSurveyDto:userSurveys) {
+			
+			UserSurvey  uSurvey = new UserSurvey();
+			
+			if(user==null) {
+			user = userRepo.findById(userSurveyDto.getUserid()).get();
+			user.setId(user.getId());
+			}
+			uSurvey.setUser(user);
+			
+			ServicesQuestions serQues = squesRepo.findById(userSurveyDto.getServicesquestion_id()).get();
+			serQues.setServicesquestion_id(serQues.getServicesquestion_id());
+		    uSurvey.setServicesQuestions(serQues);
+			
+		    uSurvey.setUser_answer(userSurveyDto.getUser_answer());
+			uSurvey.setUser_rating(userSurveyDto.getUser_rating());
+			userSurveyList.add(uSurvey);
+			
+		 }
+		
+		
+		return userSurveyRepo.saveAll(userSurveyList);
+	}
 	
 	public List<UserSurvey> getUserSurvey(){
 		return userSurveyRepo.findAll();
@@ -41,6 +66,22 @@ public class UserSurveyService {
 	public Optional<UserSurvey> getById(Long id){
 		return userSurveyRepo.findById(id);
 	}
+	
+//	public UserSurvey saveUserSurvey(List<UserSurveyDto> surveyDto) {
+//		User user = userRepo.findById(surveyDto.getUserid()).get();
+//		user.setId(user.getId());
+//		
+//		ServicesQuestions serQues = squesRepo.findById(surveyDto.getServicesquestion_id()).get();
+//		serQues.setServicesquestion_id(serQues.getServicesquestion_id());
+//		
+//		UserSurvey  uSurvey = new UserSurvey();
+//		uSurvey.setUser(user);
+//		uSurvey.setServicesQuestions(serQues);
+//		uSurvey.setUser_answer(surveyDto.getUser_answer());
+//		uSurvey.setUser_rating(surveyDto.getUser_rating());
+//		return userSurveyRepo.saveAll(uSurvey);
+//		
+//	}
 	
 	public UserSurvey saveSurvey(UserSurveyDto surveyDto) {
 		

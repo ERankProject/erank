@@ -26,8 +26,13 @@ public class ServicesQuestService {
 		return sQuesRepo.findAll();
 	}
 	
-	public Optional<ServicesQuestions> getQuestionsById(Long id) {
-		return sQuesRepo.findById(id);
+	
+	public Optional<ServicesQuestions> getQuestionsById(Long services_id) {
+		return sQuesRepo.findById(services_id);
+	}
+	
+	public List<ServicesQuestions> getByServId(ServicesQuestionDto serveQues){
+		return sQuesRepo.findByServiceId(serveQues.getServices_id());
 	}
 	
     public ServicesQuestions saveQuestions(ServicesQuestionDto serveQues) {

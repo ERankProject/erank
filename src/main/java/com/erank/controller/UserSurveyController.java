@@ -18,7 +18,7 @@ import com.erank.service.UserSurveyService;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/Survey")
+@RequestMapping("/survey")
 public class UserSurveyController {
 
 	
@@ -30,10 +30,13 @@ public class UserSurveyController {
 //		return surveyService.saveUser(userSurvey);
 //	}
 //	
-//	@PostMapping("/saveAll")
-//	public List<UserSurvey> saveAll(List<UserSurvey> userSurveys){
-//		return surveyService.saveUsers(userSurveys);
-//	}
+	@PostMapping("/saveAll")
+	public List<UserSurvey> saveAll(@RequestBody List<UserSurveyDto> userSurveys){ 
+		
+		
+		
+		return surveyService.saveUsers(userSurveys);
+	}
 	
 	@GetMapping("/findAll")
 	public List<UserSurvey> findAll(){
