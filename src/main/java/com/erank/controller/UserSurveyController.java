@@ -32,9 +32,6 @@ public class UserSurveyController {
 //	
 	@PostMapping("/saveAll")
 	public List<UserSurvey> saveAll(@RequestBody List<UserSurveyDto> userSurveys){ 
-		
-		
-		
 		return surveyService.saveUsers(userSurveys);
 	}
 	
