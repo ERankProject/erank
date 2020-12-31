@@ -17,4 +17,5 @@ public class LoginRequest {
 	
 	private @NonNull String password;
 	
+	
 }

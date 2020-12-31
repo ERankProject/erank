@@ -36,7 +36,10 @@ public class ServicesQuestions implements Serializable{
 	private String question; 
 	
 	@Column(name = "is_option_enabled", nullable = true)
-	private Boolean is_option_enabled = false;
+	private Boolean is_option_enabled = true;
+	
+	@Column(name = "is_description_enabled", nullable = true)
+	private Boolean is_description_enabled = false;
 	
 	@Column(name = "is_rating_enabled", nullable = true)
 	private Boolean is_rating_enabled = false;

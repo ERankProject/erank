@@ -1,8 +1,10 @@
 package com.erank.controller;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.erank.model.AuthProvider;
@@ -22,6 +24,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,6 +67,7 @@ public class AuthController {
 				);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String token = tokenProvider.createToken(authentication);
+		
 		return ResponseEntity.ok(new AuthResponse(token));
 	}
 	
@@ -96,13 +100,27 @@ public class AuthController {
 	    	return userService.saveUser(user);
 	    }
 	    
-	    @GetMapping("/users")
-	    public List<User> findAll(){
-	    	return userService.getUsers();
+	    @GetMapping("/userInfo")
+	    public User getUserInfo(HttpServletRequest request){
+	    	
+	    	String jwt = getJwtFromRequest(request);
+	    	
+	    	Long userId = tokenProvider.getUserIdFromToken(jwt);
+	    	
+	    	
+	    	 return userService.getUserById(userId);
 	    }
 	    
 	    @PutMapping("/updateUser")
 	    public User Update(@RequestBody User user){
 	    	return userService.userUpdate(user);
+	    }
+	    
+	    private String getJwtFromRequest(HttpServletRequest request) {
+	        String bearerToken = request.getHeader("Authorization");
+	        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+	            return bearerToken.substring(7, bearerToken.length());
+	        }
+	        return null;
 	    }
 }

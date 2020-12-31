@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.erank.exception.ResourceNotFoundException;
 import com.erank.model.User;
 import com.erank.repo.UserRepository;
 
@@ -23,9 +24,18 @@ public class UserService {
 		return userRepo.saveAll(users);
 	}
 	
-	public List<User> getUsers(){
-		return userRepo.findAll();
+	public User getUsers(){
+		return (User) userRepo.findAll();
 	}
+	
+	public User getUserById(Long id) {
+		User user  = userRepo.findById(id).orElseThrow(
+				() -> new ResourceNotFoundException("User",  "id", id)
+				);
+		return user;
+	}
+	
+	
 	
 	public Optional<User> getUserByEmail(String email) {
 		return userRepo.findByEmail(email);

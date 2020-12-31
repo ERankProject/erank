@@ -23,8 +23,6 @@ public class ServiceTabController {
 	 @Autowired
 	 private ServicesTableService stService;
 	 
-	 
-	 
 	 @GetMapping("/tables")
 	    public List<ServicesTable> findAll(){
 	    	return stService.getServices();

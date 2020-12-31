@@ -11,4 +11,8 @@ public class UserSurveyDto {
 	private Long servicesquestion_id;
 	private String user_rating;
 	private String user_answer;
+	private String patient_name;
+	private String uhid_no;
+	private String phNum;
+	private String email;
 }

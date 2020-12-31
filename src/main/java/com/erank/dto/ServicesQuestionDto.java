@@ -13,6 +13,7 @@ public class ServicesQuestionDto {
 	private String question;
 	private Boolean is_option_enabled = true;
 	private Boolean is_rating_enabled = true;
+	private Boolean is_description_enabled = true;
 	private String option_1;
 	private String option_2;
 	private String option_3;

@@ -43,6 +43,10 @@ public class ServicesQuestService {
     	ServicesQuestions sevQues = new ServicesQuestions();
     	sevQues.setServiceTable(serviceTab);
     	sevQues.setQuestion(serveQues.getQuestion());
+    	sevQues.setIs_default_enabled(sevQues.getIs_default_enabled());
+    	sevQues.setIs_description_enabled(sevQues.getIs_description_enabled());
+    	sevQues.setIs_option_enabled(sevQues.getIs_option_enabled());
+    	sevQues.setIs_rating_enabled(sevQues.getIs_rating_enabled());
     	sevQues.setOption_1(serveQues.getOption_1());
     	sevQues.setOption_2(serveQues.getOption_2());
     	sevQues.setOption_3(serveQues.getOption_3());

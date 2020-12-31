@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @NoArgsConstructor
@@ -42,6 +43,18 @@ public class UserSurvey implements Serializable{
 	
 	@Column(name = "user_answer")
 	private String user_answer; 
+	
+	@Column (name = "patient_name")
+	private String patient_name;
+	
+	@Column (name = "uhid_no")
+	private String uhid_no;
+	
+	@Column(name = "phNum")
+	private String phNum;
+	
+	@Column(name ="email")
+	private String email;
 	
 	@ManyToOne(targetEntity=ServicesQuestions.class,fetch = FetchType.LAZY)
     @JoinColumn(name="servicesquestion_id ",nullable=false, referencedColumnName="servicesquestion_id")
