@@ -49,10 +49,10 @@ public class UserSurveyService {
 			serQues.setServicesquestion_id(serQues.getServicesquestion_id());
 		    uSurvey.setServicesQuestions(serQues);
 			
-		    //uSurvey.setPatient_name(userSurveyDto.getPatient_name());
-		    //uSurvey.setEmail(userSurveyDto.getEmail());
-		    //uSurvey.setPhNum(userSurveyDto.getPhNum());
-		    //uSurvey.setUhid_no(userSurveyDto.getUhid_no());
+		    uSurvey.setPatient_name(userSurveyDto.getPatient_name());
+		    uSurvey.setEmail(userSurveyDto.getEmail());
+		    uSurvey.setPhNum(userSurveyDto.getPhNum());
+		    uSurvey.setUhid_no(userSurveyDto.getUhid_no());
 		    uSurvey.setUser_answer(userSurveyDto.getUser_answer());
 			uSurvey.setUser_rating(userSurveyDto.getUser_rating());
 			userSurveyList.add(uSurvey);
