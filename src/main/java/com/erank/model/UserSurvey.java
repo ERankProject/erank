@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Data
 @NoArgsConstructor
@@ -38,11 +37,11 @@ public class UserSurvey implements Serializable{
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "user_rating")
-	private String user_rating; 
+	@Column(name = "response")
+	private Long response; 
 	
-	@Column(name = "user_answer")
-	private String user_answer; 
+	@Column(name = "response_label")
+	private String response_label; 
 	
 	@Column (name = "patient_name")
 	private String patient_name;
@@ -55,6 +54,9 @@ public class UserSurvey implements Serializable{
 	
 	@Column(name ="email")
 	private String email;
+	
+	@Column(name ="score")
+	private Long score;
 	
 	@ManyToOne(targetEntity=ServicesQuestions.class,fetch = FetchType.LAZY)
     @JoinColumn(name="servicesquestion_id ",nullable=false, referencedColumnName="servicesquestion_id")

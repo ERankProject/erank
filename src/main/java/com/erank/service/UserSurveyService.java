@@ -44,6 +44,30 @@ public class UserSurveyService {
 			user.setId(user.getId());
 			}
 			uSurvey.setUser(user);
+			long response;
+			
+			String responseLabel = userSurveyDto.getResponse_label();
+			switch(responseLabel) {
+			case "Excellent" : response = 5;
+			break;
+			case "Good" : response =  4;
+			break;
+			case "Average" : response =  3;
+			break;
+			case "Below Average" : response =  2;
+			break;
+			case "Unacceptable" : response =  1;
+			break;
+			case "Yes" : response =  5;
+			break;
+			case "No" : response =  1;
+			break;
+			default: response =  1;  
+		    break;  
+			}
+				
+			
+			long score = (response - 1) * 25 ;
 			
 			ServicesQuestions serQues = squesRepo.findById(userSurveyDto.getServicesquestion_id()).get();
 			serQues.setServicesquestion_id(serQues.getServicesquestion_id());
@@ -53,13 +77,12 @@ public class UserSurveyService {
 		    uSurvey.setEmail(userSurveyDto.getEmail());
 		    uSurvey.setPhNum(userSurveyDto.getPhNum());
 		    uSurvey.setUhid_no(userSurveyDto.getUhid_no());
-		    uSurvey.setUser_answer(userSurveyDto.getUser_answer());
-			uSurvey.setUser_rating(userSurveyDto.getUser_rating());
+		    uSurvey.setResponse_label(userSurveyDto.getResponse_label());
+			uSurvey.setResponse(response);
+			uSurvey.setScore(score);
 			userSurveyList.add(uSurvey);
-			
 		 }
-		
-		
+
 		return userSurveyRepo.saveAll(userSurveyList);
 	}
 	
@@ -98,8 +121,8 @@ public class UserSurveyService {
 		UserSurvey  uSurvey = new UserSurvey();
 		uSurvey.setUser(user);
 		uSurvey.setServicesQuestions(serQues);
-		uSurvey.setUser_answer(surveyDto.getUser_answer());
-		uSurvey.setUser_rating(surveyDto.getUser_rating());
+		uSurvey.setResponse_label(surveyDto.getResponse_label());
+		uSurvey.setResponse(surveyDto.getResponse());
 		return userSurveyRepo.save(uSurvey);
 	}
 }
