@@ -1,8 +1,6 @@
 package com.erank.controller;
 
 import java.net.URI;
-import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -44,7 +42,7 @@ public class AuthController {
 	private AuthenticationManager authenticationManager;
 	
 	 @Autowired
-	    private UserService userService;
+	 private UserService userService;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -104,7 +102,6 @@ public class AuthController {
 	    public User getUserInfo(HttpServletRequest request){
 	    	
 	    	String jwt = getJwtFromRequest(request);
-	    	
 	    	Long userId = tokenProvider.getUserIdFromToken(jwt);
 	    	
 	    	return userService.getUserById(userId);
