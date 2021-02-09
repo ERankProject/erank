@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.erank.dto.ServicesQuestionDto;
+import com.erank.model.Options;
 import com.erank.model.ServicesQuestions;
 import com.erank.model.ServicesTable;
+import com.erank.repo.OptionsRepositary;
 import com.erank.repo.ServiceQuestionsRepo;
 import com.erank.repo.ServiceTableRepo;
 
@@ -21,6 +23,9 @@ public class ServicesQuestService {
 	
 	@Autowired 
 	private ServiceTableRepo sTabRepo;
+	
+	@Autowired
+	private OptionsRepositary optionRepo;
 	
 	public List<ServicesQuestions> getServicesQuestions(){
 		return sQuesRepo.findAll();
@@ -40,19 +45,13 @@ public class ServicesQuestService {
     	ServicesTable serviceTab = sTabRepo.findById(serveQues.getServices_id()).get();
     	serviceTab.setServices_id(serviceTab.getServices_id());
     	
+    	Options opt = optionRepo.findById(serveQues.getQuestion_type()).get();
+    	opt.setQuestion_type(serveQues.getQuestion_type());
+    	
     	ServicesQuestions sevQues = new ServicesQuestions();
     	sevQues.setServiceTable(serviceTab);
+    	sevQues.setOptionsTable(opt);
     	sevQues.setQuestion(serveQues.getQuestion());
-    	sevQues.setIs_default_enabled(sevQues.getIs_default_enabled());
-    	sevQues.setIs_description_enabled(sevQues.getIs_description_enabled());
-    	sevQues.setIs_option_enabled(sevQues.getIs_option_enabled());
-    	sevQues.setIs_rating_enabled(sevQues.getIs_rating_enabled());
-    	sevQues.setOption_1(serveQues.getOption_1());
-    	sevQues.setOption_2(serveQues.getOption_2());
-    	sevQues.setOption_3(serveQues.getOption_3());
-    	sevQues.setOption_4(serveQues.getOption_4());
-    	sevQues.setOption_5(serveQues.getOption_5());
-    	sevQues.setOption_6(serveQues.getOption_6());
-    	return sQuesRepo.save(sevQues);
+        return sQuesRepo.save(sevQues);
 	}
 }

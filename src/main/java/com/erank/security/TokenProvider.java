@@ -21,7 +21,8 @@ public class TokenProvider {
     public TokenProvider(AppProperties appProperties) {
         this.appProperties = appProperties;
     }
-
+    
+   //to create user token by user id or email with issued date,expiration
     public String createToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
@@ -35,7 +36,8 @@ public class TokenProvider {
                 .signWith(SignatureAlgorithm.HS512, appProperties.getAuth().getTokenSecret())
                 .compact();
     }
-
+     
+    // to fetch user by user id
     public Long getUserIdFromToken(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(appProperties.getAuth().getTokenSecret())

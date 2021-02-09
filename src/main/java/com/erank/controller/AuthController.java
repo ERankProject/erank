@@ -107,8 +107,7 @@ public class AuthController {
 	    	
 	    	Long userId = tokenProvider.getUserIdFromToken(jwt);
 	    	
-	    	
-	    	 return userService.getUserById(userId);
+	    	return userService.getUserById(userId);
 	    }
 	    
 	    @PutMapping("/updateUser")
