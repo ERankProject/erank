@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -57,9 +56,14 @@ public class User implements Serializable{
 	
 	private @NonNull String providerId;
 	
-	@JsonIgnore
-	@OneToMany(targetEntity=UserSurvey.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-	private Set<UserSurvey> userSurvey = new HashSet<UserSurvey>(0);
+	@Column(name = "created_date")
+	private LocalDate created_date = LocalDate.now();
+	
+	@Column(name = "modified_date")
+	private LocalDate modified_date;
+//	@JsonIgnore
+//	@OneToMany(targetEntity=UserSurvey.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+//	private Set<UserSurvey> userSurvey = new HashSet<UserSurvey>(0);
     
 //	@JsonIgnore
 // 	@OneToMany(targetEntity=UserSurvey.class,fetch=FetchType.LAZY, cascade=CascadeType.ALL)

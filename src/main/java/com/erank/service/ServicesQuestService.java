@@ -1,5 +1,6 @@
 package com.erank.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,10 +49,28 @@ public class ServicesQuestService {
     	Options opt = optionRepo.findById(serveQues.getQuestion_type()).get();
     	opt.setQuestion_type(serveQues.getQuestion_type());
     	
+    	
     	ServicesQuestions sevQues = new ServicesQuestions();
     	sevQues.setServiceTable(serviceTab);
     	sevQues.setOptionsTable(opt);
     	sevQues.setQuestion(serveQues.getQuestion());
         return sQuesRepo.save(sevQues);
 	}
+    
+    public ServicesQuestions updateQuestions(Long id,ServicesQuestionDto serveQues) {
+    	
+    	LocalDate modified_date = LocalDate.now();
+    	ServicesTable serviceTab = sTabRepo.findById(serveQues.getServices_id()).get();
+    	serviceTab.setServices_id(serviceTab.getServices_id());
+    	
+    	Options opt = optionRepo.findById(serveQues.getQuestion_type()).get();
+    	opt.setQuestion_type(serveQues.getQuestion_type());
+    	
+    	ServicesQuestions  updateQuestion = sQuesRepo.findById(id).orElse(null);
+    	updateQuestion.setModified_date(modified_date);
+    	updateQuestion.setOptionsTable(opt);
+    	updateQuestion.setQuestion(serveQues.getQuestion());
+    	updateQuestion.setServiceTable(serviceTab);
+    	return sQuesRepo.save(updateQuestion);
+    }
 }

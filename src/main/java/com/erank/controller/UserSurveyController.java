@@ -49,4 +49,10 @@ public class UserSurveyController {
 	public UserSurvey updateSurvey(@RequestBody UserSurveyDto surveyDto) {
 		return surveyService.saveSurvey(surveyDto); 
 	}
+	
+	@PostMapping("/search")
+	public List<UserSurvey> getSearch(@RequestBody UserSurveyDto surveyDto) {
+		return surveyService.getBySearch(surveyDto);
+		
+	}
 }

@@ -1,5 +1,6 @@
 package com.erank.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +36,6 @@ public class UserService {
 		return user;
 	}
 	
-	
-	
 	public Optional<User> getUserByEmail(String email) {
 		return userRepo.findByEmail(email);
 	}
@@ -46,7 +45,8 @@ public class UserService {
 		existingUser.setPhNum(user.getPhNum());
 		existingUser.setEmail(user.getEmail());
 		existingUser.setName(user.getName());
-		existingUser.setPassword(user.getPassword());	
+		existingUser.setPassword(user.getPassword());
+		existingUser.setModified_date(LocalDate.now());
 		return userRepo.save(existingUser);
 	}
 

@@ -1,5 +1,9 @@
 package com.erank.dto;
 
+
+
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,5 +17,6 @@ public class ServicesQuestionDto {
 	private String question;
     private Long services_id;
 	private Long question_type;
+	private LocalDate modified_date;
 
 }

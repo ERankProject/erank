@@ -1,6 +1,8 @@
 package com.erank.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -58,15 +61,26 @@ public class UserSurvey implements Serializable{
 	@Column(name ="score")
 	private Long score;
 	
+	@Column(name="created_date")
+	private LocalDate created_date;
+	
+	@Column(name="service_name")
+    private String service_name;
+	
 	@ManyToOne(targetEntity=ServicesQuestions.class,fetch = FetchType.LAZY)
     @JoinColumn(name="servicesquestion_id ",nullable=false, referencedColumnName="servicesquestion_id")
     @JsonIgnoreProperties(value = {"servicesQuestions", "hibernateLazyInitializer"})       
     private ServicesQuestions servicesQuestions;
 	
-	@ManyToOne(targetEntity=User.class,fetch = FetchType.LAZY)
-    @JoinColumn(name="userid ",nullable=false, referencedColumnName="userid")
-    @JsonIgnoreProperties(value = {"user", "hibernateLazyInitializer"})       
-    private User user;
+	@ManyToOne(targetEntity=ServicesTable.class,fetch = FetchType.LAZY)
+    @JoinColumn(name="services_id ",nullable=false, referencedColumnName="services_id")
+    @JsonIgnoreProperties(value = {"serviceTable", "hibernateLazyInitializer"})       
+    private ServicesTable serviceTable; 
+	
+//	@ManyToOne(targetEntity=User.class,fetch = FetchType.LAZY)
+//    @JoinColumn(name="userid ",nullable=false, referencedColumnName="userid")
+//    @JsonIgnoreProperties(value = {"user", "hibernateLazyInitializer"})       
+//    private User user;
 	
 	
 }

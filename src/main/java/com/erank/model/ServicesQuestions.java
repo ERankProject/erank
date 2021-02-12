@@ -4,10 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +38,11 @@ public class ServicesQuestions implements Serializable{
 	@Column(name = "question")
 	private String question; 
 	
+	@Column(name="created_date")
+	private LocalDate created_date = LocalDate.now();
+	
+	@Column(name="modified_date")
+	private LocalDate modified_date;
 
 	@ManyToOne(targetEntity=ServicesTable.class,fetch = FetchType.LAZY)
     @JoinColumn(name="services_id ",nullable=false, referencedColumnName="services_id")
