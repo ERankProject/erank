@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +60,7 @@ public class UserSurveyService {
 			break;
 			case "Average" : response =  3;
 			break;
-			case "Below Average" : response =  2;
+			case "Below-Average" : response =  2;
 			break;
 			case "Unacceptable" : response =  1;
 			break;
@@ -138,4 +139,9 @@ public class UserSurveyService {
 		return userSurveyRepo.findBySearch(surveyDto.getStartDate(),surveyDto.getEndDate(),surveyDto.getService_name(),surveyDto.getResponse_label());
 		
 	}
-}
+	
+	public List<UserSurvey> graph(){
+		return userSurveyRepo.graphs();
+	}
+	
+	}

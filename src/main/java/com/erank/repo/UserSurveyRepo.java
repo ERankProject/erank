@@ -25,6 +25,8 @@ public interface UserSurveyRepo extends JpaRepository<UserSurvey, Long>{
 			+ "		AND  DATE(IFNULL(:endDate,CURDATE())) AND service_name = IFNULL(:serName, service_name) "
 			+ "			AND response_label = IFNULL(:respns, response_label) order by user_survey_id")
 	public List<UserSurvey> findBySearch(@Param("startDate") LocalDate start_date,@Param("endDate") LocalDate end_date,@Param("serName") String serName,@Param("respns") String response_label);
-
+  
+	@Query(nativeQuery = true,value="select * from user_survey where score !=0 ORDER BY score desc")
+	public List<UserSurvey> graphs();
 	
 }

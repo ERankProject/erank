@@ -1,5 +1,6 @@
 package com.erank.controller;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.erank.dto.UserSurveyDto;
 import com.erank.model.UserSurvey;
 import com.erank.service.UserSurveyService;
+
+
+
 
 @CrossOrigin(origins="*")
 @RestController
@@ -55,4 +59,11 @@ public class UserSurveyController {
 		return surveyService.getBySearch(surveyDto);
 		
 	}
+	
+	
+	@GetMapping("/allGraphs")
+	public List<UserSurvey> getGraphs(){
+		return surveyService.graph();
+	}
+		
 }
