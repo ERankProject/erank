@@ -15,6 +15,6 @@ import com.erank.model.ServicesQuestions;
 public interface ServiceQuestionsRepo extends JpaRepository<ServicesQuestions, Long>{
 	ServicesQuestions save(ServicesQuestionDto serveQues);
 	
-	@Query(nativeQuery = true, value="select * from service_questions where services_id = :service_id")
+	@Query(nativeQuery = true, value="select * from service_questions where services_id = :service_id ORDER BY section_id asc;")
 	public List<ServicesQuestions> findByServiceId(@Param("service_id") Long servId);
 }

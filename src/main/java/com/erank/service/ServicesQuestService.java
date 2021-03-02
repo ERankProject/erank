@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 import com.erank.dto.ServicesQuestionDto;
 import com.erank.model.Options;
+import com.erank.model.SectionTable;
 import com.erank.model.ServicesQuestions;
 import com.erank.model.ServicesTable;
 import com.erank.repo.OptionsRepositary;
+import com.erank.repo.SectionTableRepositary;
 import com.erank.repo.ServiceQuestionsRepo;
 import com.erank.repo.ServiceTableRepo;
 
@@ -27,6 +29,9 @@ public class ServicesQuestService {
 	
 	@Autowired
 	private OptionsRepositary optionRepo;
+	
+	@Autowired
+	private SectionTableRepositary secRepo;
 	
 	public List<ServicesQuestions> getServicesQuestions(){
 		return sQuesRepo.findAll();
@@ -46,12 +51,16 @@ public class ServicesQuestService {
     	ServicesTable serviceTab = sTabRepo.findById(serveQues.getServices_id()).get();
     	serviceTab.setServices_id(serviceTab.getServices_id());
     	
+    	SectionTable sectionTable = secRepo.findById(serveQues.getSection_id()).get();
+    	sectionTable.setSection_id(serveQues.getSection_id());
+    	
     	Options opt = optionRepo.findById(serveQues.getQuestion_type()).get();
     	opt.setQuestion_type(serveQues.getQuestion_type());
     	
     	
     	ServicesQuestions sevQues = new ServicesQuestions();
     	sevQues.setServiceTable(serviceTab);
+    	sevQues.setSectionTable(sectionTable);
     	sevQues.setOptionsTable(opt);
     	sevQues.setQuestion(serveQues.getQuestion());
         return sQuesRepo.save(sevQues);
@@ -63,10 +72,14 @@ public class ServicesQuestService {
     	ServicesTable serviceTab = sTabRepo.findById(serveQues.getServices_id()).get();
     	serviceTab.setServices_id(serviceTab.getServices_id());
     	
+    	SectionTable sectionTable = secRepo.findById(serveQues.getSection_id()).get();
+    	sectionTable.setSection_id(serveQues.getSection_id());
+    	
     	Options opt = optionRepo.findById(serveQues.getQuestion_type()).get();
     	opt.setQuestion_type(serveQues.getQuestion_type());
     	
     	ServicesQuestions  updateQuestion = sQuesRepo.findById(id).orElse(null);
+    	updateQuestion.setSectionTable(sectionTable);
     	updateQuestion.setModified_date(modified_date);
     	updateQuestion.setOptionsTable(opt);
     	updateQuestion.setQuestion(serveQues.getQuestion());

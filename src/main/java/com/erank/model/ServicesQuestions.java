@@ -54,8 +54,15 @@ public class ServicesQuestions implements Serializable{
     @JsonIgnoreProperties(value = {"optionsTable", "hibernateLazyInitializer"})       
     private Options optionsTable;
 	
+	@ManyToOne(targetEntity=SectionTable.class,fetch = FetchType.LAZY)
+    @JoinColumn(name="section_id ",nullable=false, referencedColumnName="section_id")
+    @JsonIgnoreProperties(value = {"sectionTable", "hibernateLazyInitializer"})       
+    private SectionTable sectionTable; 
+	
 	@JsonIgnore
 	@OneToMany(targetEntity=UserSurvey.class,cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
 	private Set<UserSurvey> userSurvey = new HashSet<UserSurvey>(0);
+	
+	
 	
 }

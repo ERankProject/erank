@@ -18,5 +18,6 @@ public class ServicesQuestionDto {
     private Long services_id;
 	private Long question_type;
 	private LocalDate modified_date;
+	private Long section_id;
 
 }
