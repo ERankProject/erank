@@ -66,10 +66,10 @@ public class SectionTable implements Serializable{
 	@Column(name="modified_by")
 	private String modified_by;
 	
-	@ManyToOne(targetEntity=ServicesTable.class,fetch = FetchType.LAZY)
-    @JoinColumn(name="services_id ",nullable=false, referencedColumnName="services_id")
-    @JsonIgnoreProperties(value = {"serviceTable", "hibernateLazyInitializer"})       
-    private ServicesTable serviceTable;
+//	@ManyToOne(targetEntity=ServicesTable.class,fetch = FetchType.LAZY)
+//    @JoinColumn(name="services_id ",nullable=false, referencedColumnName="services_id")
+//    @JsonIgnoreProperties(value = {"serviceTable", "hibernateLazyInitializer"})       
+//    private ServicesTable serviceTable;
 	
 	
 	@JsonIgnore

@@ -20,8 +20,8 @@ public class SectionTableService {
 	@Autowired
 	private SectionTableRepositary sectionRepo;
 	
-	@Autowired
-	private ServiceTableRepo  servTab;
+	//@Autowired
+	//private ServiceTableRepo  servTab;
 	
 	
 	public List<SectionTable> getSections(){
@@ -34,13 +34,13 @@ public class SectionTableService {
 	
 	public SectionTable addSection(SectionTableDto secTab) {
 		
-		ServicesTable tab = servTab.findById(secTab.getServices_id()).get();
-		tab.setServices_id(tab.getServices_id());
+		//ServicesTable tab = servTab.findById(secTab.getServices_id()).get();
+		//tab.setServices_id(tab.getServices_id());
 		
 		String Created_by = "admin";
 		
 		SectionTable secTable = new SectionTable();
-		secTable.setServiceTable(tab);
+		//secTable.setServiceTable(tab);
 		secTable.setSection_name(secTab.getSection_name());
 		secTable.setIs_enabled(true);
 		secTable.setCreated_date(LocalDate.now());
@@ -52,8 +52,8 @@ public class SectionTableService {
 		
 		LocalDate modified_date = LocalDate.now();
 		
-		ServicesTable tab = servTab.findById(secTabDto.getServices_id()).get();
-		tab.setServices_id(tab.getServices_id());
+		//ServicesTable tab = servTab.findById(secTabDto.getServices_id()).get();
+		//tab.setServices_id(tab.getServices_id());
 		
 		String Modified_by = "Editor";
 		
@@ -62,7 +62,7 @@ public class SectionTableService {
 		secTable.setModified_date(modified_date);
 		secTable.setModified_by(Modified_by);
         secTable.setSection_name(secTabDto.getSection_name());
-        secTable.setServiceTable(tab);
+        //secTable.setServiceTable(tab);
         return sectionRepo.save(secTable);
 		
 	}

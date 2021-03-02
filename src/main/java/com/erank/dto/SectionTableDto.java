@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class SectionTableDto {
 	
 	private Long section_id;
-	private Long services_id;
+	//private Long services_id;
 	private String section_name;
 	private Boolean is_enabled = true;
 	private LocalDate created_date;

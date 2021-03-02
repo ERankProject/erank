@@ -41,9 +41,9 @@ public class ServicesTable implements Serializable{
 	@OneToMany(targetEntity=ServicesQuestions.class,cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
 	private Set<ServicesQuestions> serviceQuestions = new HashSet<ServicesQuestions>(0);
 	
-	@JsonIgnore
-	@OneToMany(targetEntity=SectionTable.class,cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-	private Set<SectionTable> sectiontable = new HashSet<SectionTable>(0);
+	//@JsonIgnore
+	//@OneToMany(targetEntity=SectionTable.class,cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+	//private Set<SectionTable> sectiontable = new HashSet<SectionTable>(0);
 	
 	@JsonIgnore
 	@OneToMany(targetEntity=UserSurvey.class,cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
