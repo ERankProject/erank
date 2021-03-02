@@ -61,8 +61,8 @@ public class UserSurvey implements Serializable{
 	@Column(name ="score")
 	private Long score;
 	
-	@Column(name="created_date")
-	private LocalDate created_date;
+	@Column(name="recieved_date")
+	private LocalDate recieved_date;
 	
 	@Column(name="service_name")
     private String service_name;

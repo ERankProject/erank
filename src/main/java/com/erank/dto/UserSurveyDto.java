@@ -20,7 +20,7 @@ public class UserSurveyDto {
 	private String phNum;
 	private String email;
 	private Long score;
-	private LocalDate created_date;
+	private LocalDate recieved_date;
 	private String service_name;
 	private LocalDate endDate;
 	private LocalDate startDate;

@@ -21,7 +21,7 @@ public interface UserSurveyRepo extends JpaRepository<UserSurvey, Long>{
 
 	//List<UserSurvey> saveAll(UserSurveyDto uSurvey);
 	
-	@Query(nativeQuery = true, value="select * FROM user_survey where DATE(created_date) BETWEEN DATE(IFNULL(:startDate,created_date)) "
+	@Query(nativeQuery = true, value="select * FROM user_survey where DATE(recieved_date) BETWEEN DATE(IFNULL(:startDate,recieved_date)) "
 			+ "		AND  DATE(IFNULL(:endDate,CURDATE())) AND service_name = IFNULL(:serName, service_name) "
 			+ "			AND response_label = IFNULL(:respns, response_label) order by user_survey_id")
 	public List<UserSurvey> findBySearch(@Param("startDate") LocalDate start_date,@Param("endDate") LocalDate end_date,@Param("serName") String serName,@Param("respns") String response_label);

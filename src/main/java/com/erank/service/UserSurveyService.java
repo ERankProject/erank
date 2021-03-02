@@ -91,7 +91,7 @@ public class UserSurveyService {
 		    uSurvey.setUhid_no(userSurveyDto.getUhid_no());
 		    uSurvey.setResponse_label(userSurveyDto.getResponse_label());
 			uSurvey.setResponse(response);
-			uSurvey.setCreated_date(LocalDate.now());
+			uSurvey.setRecieved_date(LocalDate.now());
 			uSurvey.setService_name(userSurveyDto.getService_name());
 			uSurvey.setScore(score);
 			userSurveyList.add(uSurvey);
