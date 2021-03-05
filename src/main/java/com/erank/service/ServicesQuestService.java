@@ -17,6 +17,7 @@ import com.erank.repo.SectionTableRepositary;
 import com.erank.repo.ServiceQuestionsRepo;
 import com.erank.repo.ServiceTableRepo;
 
+
 @Service
 public class ServicesQuestService {
 
@@ -63,6 +64,7 @@ public class ServicesQuestService {
     	sevQues.setSectionTable(sectionTable);
     	sevQues.setOptionsTable(opt);
     	sevQues.setQuestion(serveQues.getQuestion());
+    	sevQues.setIs_enabled(false);
         return sQuesRepo.save(sevQues);
 	}
     
@@ -84,6 +86,29 @@ public class ServicesQuestService {
     	updateQuestion.setOptionsTable(opt);
     	updateQuestion.setQuestion(serveQues.getQuestion());
     	updateQuestion.setServiceTable(serviceTab);
+    	updateQuestion.setIs_enabled(false);
     	return sQuesRepo.save(updateQuestion);
     }
+    
+    
+   /* public Map<String , List<ServicesQuestions>> questions(Long servicesId) {
+    	Long servicesquestion_id;
+    	String question;
+        Long services_id;
+    	Long question_type;
+    	LocalDate modified_date;
+    	Long section_id;
+    	Map<String , List<ServicesQuestions>> outPutObj = (Map<String, List<ServicesQuestions>>) sQuesRepo.findById(servicesId).get();
+    	
+    	
+    	if(outPutObj == null) {
+    		List<ServicesQuestions>  listObj = new ArrayList<ServicesQuestions>();
+    		listObj.add(new ServicesQuestions());
+    		outPutObj.put(, listObj);
+    	}
+    	
+		return outPutObj;
+    	
+    	
+    }*/
 }

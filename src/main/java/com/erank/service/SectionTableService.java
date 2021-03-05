@@ -10,9 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.erank.dto.SectionTableDto;
 import com.erank.model.SectionTable;
-import com.erank.model.ServicesTable;
 import com.erank.repo.SectionTableRepositary;
-import com.erank.repo.ServiceTableRepo;
+
 
 @Service
 public class SectionTableService {

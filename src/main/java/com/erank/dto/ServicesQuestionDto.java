@@ -19,5 +19,5 @@ public class ServicesQuestionDto {
 	private Long question_type;
 	private LocalDate modified_date;
 	private Long section_id;
-
+    private Boolean is_enabled;
 }

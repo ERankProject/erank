@@ -43,6 +43,9 @@ public class ServicesQuestions implements Serializable{
 	
 	@Column(name="modified_date")
 	private LocalDate modified_date;
+	
+	@Column(name="is_enabled")
+	private Boolean is_enabled;
 
 	@ManyToOne(targetEntity=ServicesTable.class,fetch = FetchType.LAZY)
     @JoinColumn(name="services_id ",nullable=false, referencedColumnName="services_id")
