@@ -94,6 +94,7 @@ public class UserSurveyService {
 			uSurvey.setRecieved_date(LocalDate.now());
 			uSurvey.setService_name(userSurveyDto.getService_name());
 			uSurvey.setScore(score);
+			uSurvey.setPatient_discharge_date(userSurveyDto.getPatient_discharge_date());
 			userSurveyList.add(uSurvey);
 		 }
 

@@ -24,5 +24,6 @@ public class UserSurveyDto {
 	private String service_name;
 	private LocalDate endDate;
 	private LocalDate startDate;
+	private LocalDate patient_discharge_date;
 	
 }

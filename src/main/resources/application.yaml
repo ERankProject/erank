@@ -14,6 +14,7 @@ spring:
         storage_engine:innodb
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
+#    globally_quoted_identifiers: true
   security:
     oauth2:
       client:
@@ -37,6 +38,8 @@ spring:
             authorizationUri: https://www.facebook.com/v3.0/dialog/oauth
             tokenUri: https://graph.facebook.com/v3.0/oauth/access_token
             userInfoUri: https://graph.facebook.com/v3.0/me?fields=id,first_name,middle_name,last_name,name,email,verified,is_verified,picture.width(250).height(250)
+#  flyway:
+#          baseline-on-migrate: true
 app:
   auth:
     token-secret: 926D96C90030DD58429D2751AC1BDBBC

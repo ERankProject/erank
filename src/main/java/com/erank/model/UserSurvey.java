@@ -64,6 +64,9 @@ public class UserSurvey implements Serializable{
 	@Column(name="recieved_date")
 	private LocalDate recieved_date;
 	
+	@Column(name="patient_discharge_date")
+	private LocalDate patient_discharge_date;
+	
 	@Column(name="service_name")
     private String service_name;
 	
