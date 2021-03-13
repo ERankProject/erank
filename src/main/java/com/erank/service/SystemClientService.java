@@ -78,5 +78,9 @@ public class SystemClientService {
 		
 	}
 	
+	public SystemClients getByEmailId( SystemClientDto clientDto) {
+		return clientRepo.findByEmailId(clientDto.getEmail(), clientDto.getPassword());
+	}
+	
 	
 }
