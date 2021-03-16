@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.erank.dto.SystemClientDto;
+import com.erank.exception.BadRequestException;
 import com.erank.model.SystemClients;
 import com.erank.repo.SystemClientRepositary;
 import com.erank.service.SystemClientService;
@@ -65,6 +66,10 @@ public class SystemClientController {
 			if(sysRepo.existsByEmail(clientDto.getEmail()) == false) {
 				throw new com.erank.exception.BadRequestException("Not Yet Registered");
 			}
-			return sysClient.getByEmailId(clientDto);
+			if(sysClient.getByEmailId(clientDto) !=null) {
+				return sysClient.getByEmailId(clientDto);
+			}
+			else 
+				throw new BadRequestException("Unauthorized");
 		  }
 }

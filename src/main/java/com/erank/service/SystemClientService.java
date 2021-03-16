@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.erank.dto.SystemClientDto;
@@ -13,12 +14,19 @@ import com.erank.model.SystemDomain;
 import com.erank.repo.SystemClientRepositary;
 import com.erank.repo.SystemDomainRepositary;
 
+
 @Service
 public class SystemClientService {
 
 	
 	@Autowired
 	private SystemClientRepositary clientRepo;
+	
+	/*@Autowired
+	private TokenProvider tokenProvider;*/
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	private SystemDomainRepositary domainRepo;
@@ -49,7 +57,7 @@ public class SystemClientService {
 		systemClient.setCity(clientDto.getCity());
 		systemClient.setState(clientDto.getState());
 		systemClient.setPincode(clientDto.getPincode());
-		systemClient.setPassword(clientDto.getPassword());
+		systemClient.setPassword(passwordEncoder.encode(clientDto.getPassword()));
 		systemClient.setCreated_date(LocalDateTime.now());
 		return clientRepo.save(systemClient);
 	}
@@ -78,8 +86,18 @@ public class SystemClientService {
 		
 	}
 	
-	public SystemClients getByEmailId( SystemClientDto clientDto) {
-		return clientRepo.findByEmailId(clientDto.getEmail(), clientDto.getPassword());
+	public SystemClients getByEmailId(SystemClientDto clientDto) {
+		
+		String client = clientRepo.findByEmail(clientDto.getEmail()).getPassword();
+		System.out.println(client);
+		boolean isPasswordMatch = passwordEncoder.matches(clientDto.getPassword(), client);
+		if(isPasswordMatch == true) {
+			//SystemClients authentication = clientRepo.findByEmail(clientDto.getEmail());
+			//String token = tokenProvider.createTokenId(authentication);
+			//System.out.println(token);
+			return clientRepo.findByEmail(clientDto.getEmail());
+		}else 
+		  return null;
 	}
 	
 	

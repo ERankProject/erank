@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import com.erank.config.AppProperties;
+import com.erank.model.SystemClients;
 
 import java.util.Date;
 
@@ -64,4 +65,22 @@ public class TokenProvider {
         }
         return false;
     }
+    
+    public String createTokenId(SystemClients authentication) {
+        SystemClients userPrincipal = (SystemClients) ((Authentication) authentication).getPrincipal();
+
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
+
+        return Jwts.builder()
+                .setSubject(Long.toString(userPrincipal.getSystem_client_id()))
+                .setIssuedAt(new Date())
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, appProperties.getAuth().getTokenSecret())
+                .compact();
+    }
+
+	
+    
+    
 }

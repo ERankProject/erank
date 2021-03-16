@@ -18,4 +18,7 @@ public interface SystemClientRepositary extends JpaRepository<SystemClients, Lon
 	
 	@Query(nativeQuery = true, value="select * from system_client where email = :emailId And password = :passcode")
 	SystemClients findByEmailId(@Param("emailId") String email, @Param("passcode") String password);
+	
+	@Query(nativeQuery = true, value="select * from system_client where email = :emailId")
+	SystemClients findByEmail(@Param("emailId") String email);
 }

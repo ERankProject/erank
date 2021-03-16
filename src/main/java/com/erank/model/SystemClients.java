@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -72,6 +73,7 @@ public class SystemClients implements Serializable{
 	@Column(name="pincode")
 	private String pincode;
 	
+	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	
